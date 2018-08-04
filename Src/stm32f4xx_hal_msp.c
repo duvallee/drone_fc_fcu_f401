@@ -46,7 +46,6 @@
   *
   ******************************************************************************
   */
-/* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
 extern void _Error_Handler(char *, int);
@@ -203,7 +202,7 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
       // PB13     ------> SPI2_SCK
       // PB14     ------> SPI2_MISO
       // PB15     ------> SPI2_MOSI 
-      HAL_GPIO_DeInit(GPIOB, GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15);
+      HAL_GPIO_DeInit(GPIOB, GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15);
 
       // SPI2 interrupt DeInit
       HAL_NVIC_DisableIRQ(SPI2_IRQn);
@@ -352,7 +351,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
       // USART1 GPIO Configuration
       // PA9     ------> USART1_TX
       // PA10     ------> USART1_RX 
-      HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9|GPIO_PIN_10);
+      HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9 | GPIO_PIN_10);
 
       HAL_NVIC_DisableIRQ(USART1_IRQn);
    }

@@ -47,24 +47,41 @@
   */
 
 #include "main.h"
-#include "stm32f4xx_hal.h"
-#include "usb_device.h"
-#include "scheduler.h"
 
-/* Private variables ---------------------------------------------------------*/
+
+// #include "usb_device.h"
+
+
+
+// ***************************************************************************
+// Fuction      : _putc()
+// Description  : 
+// 
+//
+// ***************************************************************************
+int _putc(unsigned char ch)
+{
+#if defined(UART_DEBUG_OUTPUT)
+   return uart_debug_put(ch);
+#else
+   return(ch);
+#endif
+}
+
+
+
+
 ADC_HandleTypeDef hadc1;
-
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
-
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim9;
-
-UART_HandleTypeDef huart1;
+// UART_HandleTypeDef huart1;
 
 
 void SystemClock_Config(void);
+#if 0
 static void MX_GPIO_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_SPI1_Init(void);
@@ -72,9 +89,12 @@ static void MX_SPI2_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM9_Init(void);
-static void MX_USART1_UART_Init(void);
+// static void MX_USART1_UART_Init(void);
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+#endif
+
+
 
 // ***************************************************************************
 // Fuction      : main()
@@ -85,20 +105,26 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 int main(void)
 {
    HAL_Init();
-   scheduler_init();
    SystemClock_Config();
 
+   uart_debug_init();
 
+   debug_output_info("=============================================== \r\n");
+   debug_output_info("%s Ver%d.%d.%d \r\n", PROGRAM_NAME, VERSION_MAIN, VERSION_MINOR, VERSION_SUB);
+   debug_output_info("Build Date : %s %s (%s) \r\n", __DATE__, __TIME__, __VERSION__);
+   debug_output_info("=============================================== \r\n\r\n");
 
-   MX_GPIO_Init();
-   MX_ADC1_Init();
-   MX_SPI1_Init();
-   MX_SPI2_Init();
-   MX_TIM2_Init();
-   MX_TIM4_Init();
-   MX_TIM9_Init();
-   MX_USART1_UART_Init();
-   MX_USB_DEVICE_Init();
+   scheduler_init();
+
+//   MX_GPIO_Init();
+//   MX_ADC1_Init();
+//   MX_SPI1_Init();
+//   MX_SPI2_Init();
+//   MX_TIM2_Init();
+//   MX_TIM4_Init();
+//   MX_TIM9_Init();
+
+//   MX_USB_DEVICE_Init();
 
 
    while (1)
@@ -152,7 +178,7 @@ void SystemClock_Config(void)
    }
 
    // Configure the Systick interrupt time 
-   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
 
    // Configure the Systick 
    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
@@ -168,6 +194,11 @@ void SystemClock_Config(void)
 
 
 
+
+
+
+
+#if 0
 
 /* ADC1 init function */
 static void MX_ADC1_Init(void)
@@ -404,24 +435,6 @@ static void MX_TIM9_Init(void)
 
 }
 
-/* USART1 init function */
-static void MX_USART1_UART_Init(void)
-{
-
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
-
-}
 
 /** Configure pins as 
         * Analog 
@@ -496,6 +509,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
+
+#endif
+
+
 
 
 // ***************************************************************************

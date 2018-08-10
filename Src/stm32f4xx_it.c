@@ -109,17 +109,6 @@ void SPI2_IRQHandler(void)
 }
 
 // ***************************************************************************
-// Fuction      : USART1_IRQHandler()
-// Description  : 
-// 
-//
-// ***************************************************************************
-void USART1_IRQHandler(void)
-{
-   HAL_UART_IRQHandler(&huart1);
-}
-
-// ***************************************************************************
 // Fuction      : OTG_FS_IRQHandler()
 // Description  : 
 // 

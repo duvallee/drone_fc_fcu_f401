@@ -5,11 +5,8 @@
  *
 */
 #include "main.h"
-#include "string.h"
-#include "stm32f4xx_hal.h"
-#include "scheduler.h"
 
-
+// ---------------------------------------------------------------------------
 #define MAX_SCHEDULER_COUNT                              1                          // max 8
 #define SCHEDULER_FLAG_SIZE                              32                         // does not modified
 

@@ -45,58 +45,75 @@
   *
   ******************************************************************************
   */
-/* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
 #define __MAIN_H
-  /* Includes ------------------------------------------------------------------*/
 
-/* Includes ------------------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
+#define UART_DEBUG_OUTPUT
 
-/* USER CODE END Includes */
+// --------------------------------------------------------------------------------
+#define UART_DEBUG_PORT                                  USART1
+#define UART_DEBUG_BAUDRATE                              115200
 
-/* Private define ------------------------------------------------------------*/
+#define UART_DEBUG_RX_PIN                                GPIO_PIN_10
+#define UART_DEBUG_RX_GPIO_PORT                          GPIOA
+#define UART_DEBUG_TX_PIN                                GPIO_PIN_9
+#define UART_DEBUG_TX_GPIO_PORT                          GPIOA
 
-#define BLE_IRQ_Pin GPIO_PIN_4
-#define BLE_IRQ_GPIO_Port GPIOA
-#define BLE_CS_Pin GPIO_PIN_0
-#define BLE_CS_GPIO_Port GPIOB
-#define VBAT_SENSE_Pin GPIO_PIN_1
-#define VBAT_SENSE_GPIO_Port GPIOB
-#define BLE_RSTN_Pin GPIO_PIN_2
-#define BLE_RSTN_GPIO_Port GPIOB
-#define LPS25H_CS_Pin GPIO_PIN_10
-#define LPS25H_CS_GPIO_Port GPIOB
-#define LIS3MDL_CS_Pin GPIO_PIN_12
-#define LIS3MDL_CS_GPIO_Port GPIOB
-#define LSM6DS33_CS_Pin GPIO_PIN_8
-#define LSM6DS33_CS_GPIO_Port GPIOA
-#define LED3_Pin GPIO_PIN_3
-#define LED3_GPIO_Port GPIOB
-#define LED2_Pin GPIO_PIN_4
-#define LED2_GPIO_Port GPIOB
-#define MOTOR1_Pin GPIO_PIN_6
-#define MOTOR1_GPIO_Port GPIOB
-#define MOTOR2_Pin GPIO_PIN_7
-#define MOTOR2_GPIO_Port GPIOB
-#define MOTOR3_Pin GPIO_PIN_8
-#define MOTOR3_GPIO_Port GPIOB
-#define MOTOR4_Pin GPIO_PIN_9
-#define MOTOR4_GPIO_Port GPIOB
+// --------------------------------------------------------------------------------
+#define BLE_IRQ_Pin                                      GPIO_PIN_4
+#define BLE_IRQ_GPIO_Port                                GPIOA
 
-/* ########################## Assert Selection ############################## */
-/**
-  * @brief Uncomment the line below to expanse the "assert_param" macro in the 
-  *        HAL drivers code
-  */
-/* #define USE_FULL_ASSERT    1U */
+#define BLE_CS_Pin                                       GPIO_PIN_0
+#define BLE_CS_GPIO_Port                                 GPIOB
 
-/* USER CODE BEGIN Private defines */
+#define BLE_RSTN_Pin                                     GPIO_PIN_2
+#define BLE_RSTN_GPIO_Port                               GPIOB
 
-/* USER CODE END Private defines */
+#define VBAT_SENSE_Pin                                   GPIO_PIN_1
+#define VBAT_SENSE_GPIO_Port                             GPIOB
+
+#define LPS25H_CS_Pin                                    GPIO_PIN_10
+#define LPS25H_CS_GPIO_Port                              GPIOB
+
+#define LIS3MDL_CS_Pin                                   GPIO_PIN_12
+#define LIS3MDL_CS_GPIO_Port                             GPIOB
+
+#define LSM6DS33_CS_Pin                                  GPIO_PIN_8
+#define LSM6DS33_CS_GPIO_Port                            GPIOA
+
+#define LED3_Pin                                         GPIO_PIN_3
+#define LED3_GPIO_Port                                   GPIOB
+
+#define LED2_Pin                                         GPIO_PIN_4
+#define LED2_GPIO_Port                                   GPIOB
+
+#define MOTOR1_Pin                                       GPIO_PIN_6
+#define MOTOR1_GPIO_Port                                 GPIOB
+
+#define MOTOR2_Pin                                       GPIO_PIN_7
+#define MOTOR2_GPIO_Port                                 GPIOB
+
+#define MOTOR3_Pin                                       GPIO_PIN_8
+#define MOTOR3_GPIO_Port                                 GPIOB
+
+#define MOTOR4_Pin                                       GPIO_PIN_9
+#define MOTOR4_GPIO_Port                                 GPIOB
+
+#define PROGRAM_NAME                                     "FCU-F401"
+#define VERSION_MAIN                                     0
+#define VERSION_MINOR                                    1
+#define VERSION_SUB                                      0
+
+// --------------------------------------------------------------------------------
+#include "sys/_stdint.h"
+#include "string.h"
+#include "stm32f4xx_hal.h"
+#include "uart_debug.h"
+#include "debug_output.h"
+#include "scheduler.h"
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 void _Error_Handler(char *, int);
 
@@ -105,13 +122,5 @@ void _Error_Handler(char *, int);
 }
 #endif
 
-/**
-  * @}
-  */ 
+#endif   // __MAIN_H
 
-/**
-  * @}
-*/ 
-
-#endif /* __MAIN_H */
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

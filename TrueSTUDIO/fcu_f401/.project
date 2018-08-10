@@ -137,6 +137,14 @@
 			<type>1</type>
 			<location>PARENT-2-PROJECT_LOC/Src/common/scheduler.c</location>
 		</link><link>
+			<name>Application/User/printf.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/common/printf.c</location>
+		</link><link>
+			<name>Application/User/uart_debug.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/common/uart_debug.c</location>
+		</link><link>
 			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.c</name>
 			<type>1</type>
 			<location>PARENT-2-PROJECT_LOC/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c</location>

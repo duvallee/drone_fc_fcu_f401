@@ -11,8 +11,8 @@
 // ---------------------------------------------------------------------------
 #define BATTERY_GAUGE_TIMER                              5000
 
-#define BATTERY_MAX_ADC_VALUE                            65535
-#define BATTERY_MAX_MILI_VOLTAGE                         4300
+#define BATTERY_MAX_ADC_VALUE                            4096
+#define BATTERY_MAX_MILI_VOLTAGE                         2866
 
 // ---------------------------------------------------------------------------
 static ADC_HandleTypeDef g_adc_port1;
@@ -46,8 +46,11 @@ uint8_t get_battery_voltage(uint32_t* p_bat_voltage)
 
    // MAX Voltage for ADC = (BATTERY_DOWN_REGISTER / (BATTERY_DOWN_REGISTER + BATTERY_UP_REGISTER)) * 4.3V (max voltage of battery)
    //                     = 3.3 V
-   //                 ADC = 65535 (16 bits)
+   //                 ADC = 4096 (12 bits)
    // Current Voltage     = (adc value * BATTERY_MAX_MILI_VOLTAGE) / BATTERY_MAX_ADC_VALUE
+
+
+   debug_output_info("adc : %d \r\n", (int) adc_value);
 
    *p_bat_voltage                                        = (adc_value * BATTERY_MAX_MILI_VOLTAGE) / BATTERY_MAX_ADC_VALUE;
    return 0;
@@ -65,7 +68,7 @@ void Battery_Gauge_Timer(uint32_t system_ms)
 {
    uint32_t voltage_value                                = 0;
    get_battery_voltage(&voltage_value);
-   debug_output_info("%d, %d mV \r\n", system_ms, voltage_value);
+   debug_output_info("%d, %d mV \r\n", (int) system_ms, (int) voltage_value);
 }
 
 

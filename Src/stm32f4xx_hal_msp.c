@@ -98,10 +98,10 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
 
       // ADC1 GPIO Configuration
       // PB1     ------> ADC1_IN9 
-      GPIO_InitStruct.Pin                                = VBAT_SENSE_Pin;
+      GPIO_InitStruct.Pin                                = VBAT_SENSE_GPIO_B_1;
       GPIO_InitStruct.Mode                               = GPIO_MODE_ANALOG;
       GPIO_InitStruct.Pull                               = GPIO_NOPULL;
-      HAL_GPIO_Init(VBAT_SENSE_GPIO_Port, &GPIO_InitStruct);
+      HAL_GPIO_Init(VBAT_SENSE_PORT, &GPIO_InitStruct);
   }
 }
 
@@ -119,7 +119,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 
       // ADC1 GPIO Configuration    
       // PB1     ------> ADC1_IN9 
-      HAL_GPIO_DeInit(VBAT_SENSE_GPIO_Port, VBAT_SENSE_Pin);
+      HAL_GPIO_DeInit(VBAT_SENSE_PORT, VBAT_SENSE_GPIO_B_1);
    }
 }
 

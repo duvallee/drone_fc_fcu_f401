@@ -46,7 +46,7 @@ extern UART_HandleTypeDef huart1;
 // ******************************************************************************
 
 // ***************************************************************************
-// Fuction      : SysTick_Handler()
+// Fuction      : debug_tick_timer_handler()
 // Description  : 
 // 
 //
@@ -55,9 +55,19 @@ __weak void debug_tick_timer_handler()
 {
 }
 
+// ***************************************************************************
+// Fuction      : debug_tick_timer_handler()
+// Description  : 
+// 
+//
+// ***************************************************************************
+__weak void led_tick_timer_handler()
+{
+}
+
 
 // ***************************************************************************
-// Fuction      : SysTick_Handler()
+// Fuction      : led_tick_timer_handler()
 // Description  : 
 // 
 //
@@ -67,6 +77,7 @@ void SysTick_Handler(void)
    HAL_IncTick();
    HAL_SYSTICK_IRQHandler();
    debug_tick_timer_handler();
+   led_tick_timer_handler();
 }
 
 // ******************************************************************************

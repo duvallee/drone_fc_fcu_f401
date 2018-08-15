@@ -1,7 +1,7 @@
 /*
- *  File: printf.c
+ * File: printf.c
  *
- * COPYRIGHT(c) 2018 MICROVISION Co., Ltd.
+ * Written by duvallee.lee in 2018
  *
 */
 

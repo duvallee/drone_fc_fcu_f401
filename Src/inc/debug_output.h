@@ -1,7 +1,7 @@
 /*
- *  File: debug_output.h
+ * File: debug_output.h
  *
- * COPYRIGHT(c) 2018 MICROVISION Co., Ltd.
+ * Written by duvallee.lee
  *
 */
 

@@ -6,11 +6,13 @@
 */
 #include "main.h"
 #include "battery_gauge.h"
-
+#include "led.h"
 
 // ---------------------------------------------------------------------------
 #define BATTERY_GAUGE_TIMER                              5000
 
+// ---------------------------------------------------------------------------
+// for adc
 #define BATTERY_MAX_ADC_VALUE                            4095
 #define BATTERY_MAX_ADC_VOLTAGE                          3300
 
@@ -18,9 +20,18 @@
 #define BATTERY_DOWN_REGISTER                            20
 
 // ---------------------------------------------------------------------------
+// for battery
+#define BATTERY_FULL_VOLTAGE                             4000
+#define BATTERY_NORMAL_VOLTAGE                           3800
+#define BATTERY_LOW_VOLTAGE                              3600
+#define BATTERY_CUT_OFF_VOLTAGE                          3400
+
+#define BATTERY_NORMAL_BLINK_TIME                        3000
+#define BATTERY_LOW_BLINK_TIME                           1000
+#define BATTERY_CUT_OFF_BLINK_TIME                       500
+
+// ---------------------------------------------------------------------------
 static ADC_HandleTypeDef g_adc_port1;
-
-
 
 /* --------------------------------------------------------------------------
  * Name : get_battery_voltage()
@@ -69,6 +80,26 @@ void Battery_Gauge_Timer(uint32_t system_ms)
    uint32_t voltage_value                                = 0;
    get_battery_voltage(&voltage_value);
    debug_output_info("%d mV \r\n", (int) voltage_value);
+
+   if (voltage_value > BATTERY_FULL_VOLTAGE)
+   {
+      set_led_1_mode(LED_ON_MODE);
+   }
+   else if (voltage_value > BATTERY_NORMAL_VOLTAGE)
+   {
+      set_led_1_mode(LED_BLINK_MODE);
+      set_led_1_blink_time(BATTERY_NORMAL_BLINK_TIME);
+   }
+   else if (voltage_value > BATTERY_LOW_VOLTAGE)
+   {
+      set_led_1_mode(LED_BLINK_MODE);
+      set_led_1_blink_time(BATTERY_LOW_BLINK_TIME);
+   }
+   else
+   {
+      set_led_1_mode(LED_BLINK_MODE);
+      set_led_1_blink_time(BATTERY_CUT_OFF_BLINK_TIME);
+   }
 }
 
 

@@ -11,8 +11,11 @@
 // ---------------------------------------------------------------------------
 #define BATTERY_GAUGE_TIMER                              5000
 
-#define BATTERY_MAX_ADC_VALUE                            4096
-#define BATTERY_MAX_MILI_VOLTAGE                         2866
+#define BATTERY_MAX_ADC_VALUE                            4095
+#define BATTERY_MAX_ADC_VOLTAGE                          3300
+
+#define BATTERY_UP_REGISTER                              10
+#define BATTERY_DOWN_REGISTER                            20
 
 // ---------------------------------------------------------------------------
 static ADC_HandleTypeDef g_adc_port1;
@@ -32,7 +35,7 @@ uint8_t get_battery_voltage(uint32_t* p_bat_voltage)
       debug_output_error("HAL_ADC_Start() failed !!! \r\n");
       return ((uint8_t) -1);
    }
-   if (HAL_ADC_PollForConversion(&g_adc_port1, 10) != HAL_OK)
+   if (HAL_ADC_PollForConversion(&g_adc_port1, 1000000) != HAL_OK)
    {
       debug_output_error("HAL_ADC_PollForConversion() failed !!! \r\n");
       return ((uint8_t) -1);
@@ -49,10 +52,7 @@ uint8_t get_battery_voltage(uint32_t* p_bat_voltage)
    //                 ADC = 4096 (12 bits)
    // Current Voltage     = (adc value * BATTERY_MAX_MILI_VOLTAGE) / BATTERY_MAX_ADC_VALUE
 
-
-   debug_output_info("adc : %d \r\n", (int) adc_value);
-
-   *p_bat_voltage                                        = (adc_value * BATTERY_MAX_MILI_VOLTAGE) / BATTERY_MAX_ADC_VALUE;
+   *p_bat_voltage                                        = (((adc_value * BATTERY_MAX_ADC_VOLTAGE) /  BATTERY_MAX_ADC_VALUE) * (BATTERY_UP_REGISTER + BATTERY_DOWN_REGISTER)) / BATTERY_DOWN_REGISTER;
    return 0;
 }
 
@@ -68,7 +68,7 @@ void Battery_Gauge_Timer(uint32_t system_ms)
 {
    uint32_t voltage_value                                = 0;
    get_battery_voltage(&voltage_value);
-   debug_output_info("%d, %d mV \r\n", (int) system_ms, (int) voltage_value);
+   debug_output_info("%d mV \r\n", (int) voltage_value);
 }
 
 

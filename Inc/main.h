@@ -150,7 +150,7 @@
 
 
 
-
+#if 0
 // --------------------------------------------------------------------------------
 #define BLE_IRQ_Pin                                      GPIO_PIN_4
 #define BLE_IRQ_GPIO_Port                                GPIOA
@@ -178,6 +178,7 @@
 
 #define LED2_Pin                                         GPIO_PIN_4
 #define LED2_GPIO_Port                                   GPIOB
+#endif
 
 #define MOTOR1_Pin                                       GPIO_PIN_6
 #define MOTOR1_GPIO_Port                                 GPIOB
@@ -190,7 +191,6 @@
 
 #define MOTOR4_Pin                                       GPIO_PIN_9
 #define MOTOR4_GPIO_Port                                 GPIOB
-
 
 // --------------------------------------------------------------------------------
 #define PROGRAM_NAME                                     "FCU-F401"

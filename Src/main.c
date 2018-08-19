@@ -3,11 +3,12 @@
  *
  * Written by duvallee.lee in 2018
  *
-*/
-
+ */
 #include "main.h"
 #include "battery_gauge.h"
 #include "led.h"
+#include "usb_bulk_device.h"
+
 
 
 // ***************************************************************************
@@ -74,6 +75,9 @@ int main(void)
 
    //
    Battery_Gauge_Init();
+
+   //
+   usb_bulk_device_init();
 
 //   MX_GPIO_Init();
 //   MX_ADC1_Init();

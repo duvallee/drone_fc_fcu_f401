@@ -3,7 +3,7 @@
  *
  * Written by duvallee.lee in 2018
  *
-*/
+ */
 
 #ifndef __MAIN_H
 #define __MAIN_H

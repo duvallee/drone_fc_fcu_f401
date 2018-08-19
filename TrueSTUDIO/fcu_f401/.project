@@ -93,6 +93,10 @@
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link><link>
+			<name>Application/USB</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link><link>
 			<name>Application/TrueSTUDIO</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -144,6 +148,38 @@
 			<name>Application/User/led.c</name>
 			<type>1</type>
 			<location>PARENT-2-PROJECT_LOC/Src/common/led.c</location>
+		</link><link>
+			<name>Application/USB/usb_bulk.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/usb/src/usb_bulk.c</location>
+		</link><link>
+			<name>Application/USB/usb_bulk_device.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/usb/src/usb_bulk_device.c</location>
+		</link><link>
+			<name>Application/USB/usbd_bulk_desc.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/usb/src/usbd_bulk_desc.c</location>
+		</link><link>
+			<name>Application/USB/usbd_conf.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/usb/src/usbd_conf.c</location>
+		</link><link>
+			<name>Application/USB/usbd_bulk_if.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/usb/src/usbd_bulk_if.c</location>
+		</link><link>
+			<name>Middlewares/USB_Device_Library/usbd_core.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c</location>
+		</link><link>
+			<name>Middlewares/USB_Device_Library/usbd_ctlreq.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c</location>
+		</link><link>
+			<name>Middlewares/USB_Device_Library/usbd_ioreq.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c</location>
 		</link><link>
 			<name>Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_adc.c</name>
 			<type>1</type>

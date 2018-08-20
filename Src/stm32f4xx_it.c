@@ -34,7 +34,6 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_it.h"
 
-extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
 extern SPI_HandleTypeDef hspi1;
 extern SPI_HandleTypeDef hspi2;
 extern TIM_HandleTypeDef htim2;
@@ -132,6 +131,16 @@ void SPI2_IRQHandler(void)
 }
 
 // ***************************************************************************
+// Fuction      : USB_BULK_FS_IRQHandler()
+// Description  : 
+// 
+//
+// ***************************************************************************
+__weak void USB_BULK_FS_IRQHandler(void)
+{
+}
+
+// ***************************************************************************
 // Fuction      : OTG_FS_IRQHandler()
 // Description  : 
 // 
@@ -139,6 +148,6 @@ void SPI2_IRQHandler(void)
 // ***************************************************************************
 void OTG_FS_IRQHandler(void)
 {
-//   HAL_PCD_IRQHandler(&hpcd_USB_OTG_FS);
+   USB_BULK_FS_IRQHandler();
 }
 

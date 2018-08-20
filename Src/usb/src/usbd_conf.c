@@ -18,11 +18,11 @@ PCD_HandleTypeDef g_usb_pcd;
 
 
 /* --------------------------------------------------------------------------
- * Name : USB_CDC_HS_IRQHandler()
+ * Name : USB_BULK_FS_IRQHandler()
  *
  *
  * -------------------------------------------------------------------------- */
-void USB_CDC_HS_IRQHandler(void)
+void USB_BULK_FS_IRQHandler(void)
 {
    HAL_PCD_IRQHandler(&g_usb_pcd);
 }
@@ -202,7 +202,7 @@ void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef * hpcd)
 USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef* pdev)
 {
    // Set LL Driver parameters
-   g_usb_pcd.Instance                                    = USB1_OTG_HS;
+   g_usb_pcd.Instance                                    = USB_OTG_FS;
    g_usb_pcd.Init.dev_endpoints                          = 8;
    g_usb_pcd.Init.use_dedicated_ep1                      = 0;
    g_usb_pcd.Init.ep0_mps                                = 0x40;
@@ -230,9 +230,9 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef* pdev)
       return USBD_FAIL;
    }
 
-   HAL_PCDEx_SetRxFiFo(&g_usb_pcd, 0x200);
-   HAL_PCDEx_SetTxFiFo(&g_usb_pcd, 0, 0x80);
-   HAL_PCDEx_SetTxFiFo(&g_usb_pcd, 1, 0x174);
+   HAL_PCDEx_SetRxFiFo(&g_usb_pcd, 0x80);
+   HAL_PCDEx_SetTxFiFo(&g_usb_pcd, 0, 0x40);
+   HAL_PCDEx_SetTxFiFo(&g_usb_pcd, 1, 0x80);
 
    return USBD_OK;
 }

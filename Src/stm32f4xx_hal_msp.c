@@ -352,3 +352,46 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
    }
 }
 
+// ***************************************************************************
+// Fuction      : HAL_PCD_MspInit()
+// Description  : 
+// 
+//
+// ***************************************************************************
+void HAL_PCD_MspInit(PCD_HandleTypeDef* pcdHandle)
+{
+   GPIO_InitTypeDef GPIO_InitStruct;
+   if (pcdHandle->Instance == USB_OTG_FS)
+   {
+      __HAL_RCC_GPIOA_CLK_ENABLE();
+      GPIO_InitStruct.Pin                                = USB_DM_GPIO_A_11 | USB_DP_GPIO_A_12;
+      GPIO_InitStruct.Mode                               = GPIO_MODE_AF_PP;
+      GPIO_InitStruct.Pull                               = GPIO_NOPULL;
+      GPIO_InitStruct.Speed                              = GPIO_SPEED_FREQ_VERY_HIGH;
+      GPIO_InitStruct.Alternate                          = GPIO_AF10_OTG_FS;
+      HAL_GPIO_Init(USB_PORT_A, &GPIO_InitStruct);
+
+      // Peripheral clock enable
+      __HAL_RCC_USB_OTG_FS_CLK_ENABLE();
+
+      /* Peripheral interrupt init */
+      HAL_NVIC_SetPriority(OTG_FS_IRQn, 7, 0);
+      HAL_NVIC_EnableIRQ(OTG_FS_IRQn);
+   }
+  
+}
+
+void HAL_PCD_MspDeInit(PCD_HandleTypeDef* pcdHandle)
+{
+   if (pcdHandle->Instance == USB_OTG_FS)
+   {
+      // Peripheral clock disable
+      __HAL_RCC_USB_OTG_FS_CLK_DISABLE();
+      HAL_GPIO_DeInit(USB_PORT_A, USB_DM_GPIO_A_11 | USB_DP_GPIO_A_12);
+
+      // Peripheral interrupt Deinit
+      HAL_NVIC_DisableIRQ(OTG_FS_IRQn);
+   }
+}
+
+

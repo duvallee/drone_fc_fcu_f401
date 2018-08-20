@@ -13,7 +13,7 @@
 
 
 // ==========================================================================
-#define APP_RX_DATA_SIZE                                 2048
+#define APP_RX_DATA_SIZE                                 512
 static uint8_t UserRxBufferHS[APP_RX_DATA_SIZE];
 static uint8_t UserTxBufferHS[APP_RX_DATA_SIZE];
 
